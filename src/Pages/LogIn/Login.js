@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
+import swal from "sweetalert";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
  
@@ -20,6 +21,11 @@ const Login = () => {
         logIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
+                swal({
+                    title: "Successfully Registered",
+                    button: "OK",
+                    icon: "success"
+                });
                 console.log(user);
                 navigate(from, {replace: true});
             })

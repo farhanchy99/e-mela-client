@@ -15,8 +15,8 @@ const CategoryList = () => {
             {
                 catlists.map(catlist =>
                     <div className="card card-compact w-64 bg-base-100 shadow-xl" key={catlist._id}>
-                    <Link to={`/categories/${catlist._id}`}>
-                        <figure className='h-52 p-5'><img src={catlist.img} alt="Shoes" /></figure>
+                    <Link to={`/products/${catlist._id}`}>
+                        <figure className='h-52 p-5'><img src={catlist.img} alt="brands" /></figure>
                         <div className="divider px-10 my-0"></div> 
                         <div className="card-body">
                             <h2 className="text-center">{catlist.name}</h2>

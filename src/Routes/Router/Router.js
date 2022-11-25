@@ -1,10 +1,14 @@
+import DashLayout from "../../Layout/DashLayout";
 import Main from "../../Layout/Main";
 import AddPro from "../../Pages/AddPro/AddPro";
 import Blogs from "../../Pages/Blogs/Blogs";
+import BookModal from "../../Pages/Categories/BookModal";
 import Categories from "../../Pages/Categories/Categories";
 import PerCat from "../../Pages/Categories/PerCat";
+import DashBoard from "../../Pages/DashBoard/DashBoard";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/LogIn/Login";
+import MyOrders from "../../Pages/MyOrders/MyOrders";
 import MyPro from "../../Pages/MyPro/MyPro";
 import Register from "../../Pages/Register/Register";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
@@ -23,12 +27,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/categories',
-                element: <Categories></Categories>,
+                element: <PrivateRoutes><Categories></Categories></PrivateRoutes>,
                 loader: () => fetch(`http://localhost:5000/categories`)
             },
             {
-                path: '/categories/:id',
-                element: <PerCat></PerCat>,
+                path: '/products/:id',
+                element: <PrivateRoutes><PerCat></PerCat></PrivateRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
             {
@@ -60,6 +64,16 @@ const router = createBrowserRouter([
                     <button className="btn btn-square loading mt-5 bg-amber-400"></button>
                   </div>
                 ),
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoutes><DashLayout></DashLayout></PrivateRoutes>,
+        children:[
+            {
+                path: '/dashboard',
+                element: <MyOrders></MyOrders>
             }
         ]
     }
