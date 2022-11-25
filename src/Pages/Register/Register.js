@@ -18,7 +18,6 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             setError('');
-            navigate("/");
             swal({
                 title: "Successfully Registered",
                 button: "OK",
@@ -26,16 +25,34 @@ const Register = () => {
               });
             const profile ={ displayName: data.name, photoURL: data.photoURL};
             updateUserProfile(profile)
-            .then(()=>{})
+            .then(()=>{
+                saveUser(data.email, data.password, data.photoURL, data.name)
+            })
             .catch( e => console.error(e));
         })
         .catch(e => {
             swal({
-                title: "Unsuccessfully Registered",
+                title: "Not Registered",
                 button: "OK",
                 icon: "error"
               });
             setError(e.message);
+        })
+    }
+
+    const saveUser = (email, password, photoURL, name) =>{
+        const userData = {email, password, photoURL, name};
+        fetch('http://localhost:5000/users', {
+            method: "POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data);
+            navigate("/");
         })
     }
 
