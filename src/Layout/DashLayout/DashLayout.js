@@ -21,7 +21,7 @@ const DashLayout = () => {
             </div> 
             <div className="drawer-side">
                 <label htmlFor="dash-drawer" className="drawer-overlay"></label> 
-                <ul className="menu nav p-4 w-80 bg-slate-800 text-white font-bold">
+                <ul className="menu dashnav p-4 w-80 bg-slate-800 text-white font-bold">
                     {isAdmin && 
                     <>
                     <li><NavLink to={'/dashboard/allsellers'} className={({isActive})=> isActive ? 'active' : undefined} end>All Sellers</NavLink></li>

@@ -1,13 +1,13 @@
-.nav a{
+.dashnav a{
     padding: 8px 15px;
     border-radius:5px;
 }
-.nav a:hover{
+.dashnav a:hover{
     background-color: #45C55E;
     color: white;
     box-shadow: 0px 10px 22px 2px rgba(0,0,0,0.29);
 }
-.nav .active{
+.dashnav .active{
     background-color: #45C55E ;
     color: #ffffff;
     box-shadow: 0px 10px 22px 2px rgba(0,0,0,0.29);

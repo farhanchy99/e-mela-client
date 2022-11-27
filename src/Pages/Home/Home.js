@@ -11,8 +11,6 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <div className='w-11/12 m-auto'>
-                <p className='text-xl text-black font-bold mt-10'>ADVERTISEMENTS</p>
-                <h1 className='text-3xl text-green-500 font-bold mb-10'>Sponsored Products</h1>
                 <Advertise></Advertise>
             </div>
 

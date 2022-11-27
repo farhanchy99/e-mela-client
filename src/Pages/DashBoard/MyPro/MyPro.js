@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../contexts/AuthProvider';
 import swal from 'sweetalert';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const MyPro = () => {
     const { user } = useContext(AuthContext);
     const [myProducts, setMyProducts] = useState([]);
-    const [advertise, setadvertise] = useState(false);
 
     useEffect( () =>{
         fetch(`http://localhost:5000/myproducts?email=${user?.email}`)
@@ -19,8 +18,8 @@ const MyPro = () => {
             icon: "warning",
             buttons: true,
             dangerMode: true,
-          }).then((willVerify) => {
-            if (willVerify) {
+          }).then((willAd) => {
+            if (willAd) {
               fetch(`http://localhost:5000/product/ad/${id}`, {
                 method: "PATCH",
                 headers: {'content-type':'application/json'},

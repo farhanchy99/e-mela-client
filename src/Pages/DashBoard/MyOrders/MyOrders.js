@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { AuthContext } from '../../../contexts/AuthProvider';
 import swal from 'sweetalert';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
@@ -58,7 +58,7 @@ const MyOrders = () => {
 
 
     return (
-        <div>
+        <div className='w-11/12 m-auto'>
             <h1 className='text-3xl text-green-500 font-bold my-10'>My Orders</h1>
             <div className="overflow-x-auto w-11/12 m-auto text-black">
             <table className="table w-full">

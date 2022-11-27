@@ -2,8 +2,9 @@ import React from 'react';
 
 const DashBoard = () => {
     return (
-        <div>
-            <h1>This is dash</h1>
+        <div className='w-11/12 m-auto mt-36'>
+            <p className='text-xl text-black font-bold mt-10'>DASHBOARD</p>
+            <h1 className='text-5xl text-green-500 font-bold'>Welcome To The DashBoard!</h1>
         </div>
     );
 };

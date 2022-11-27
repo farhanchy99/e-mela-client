@@ -1,7 +1,6 @@
 
 import Main from "../../Layout/Main";
 import AddProducts from "../../Pages/AddProducts/AddProducts";
-import MyPro from "../../Pages/DashBoard/MyPro/MyPro";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Categories from "../../Pages/Categories/Categories";
 import PerCat from "../../Pages/Categories/PerCat";
@@ -17,6 +16,7 @@ import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import DashLayout from "../../Layout/DashLayout/DashLayout";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import SellerRoutes from "../SellerRoutes/SellerRoutes";
+import MyPro from "../../Pages/DashBoard/MyPro/MyPro";
 
 
 const { createBrowserRouter } = require("react-router-dom");
