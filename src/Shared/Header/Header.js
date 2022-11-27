@@ -70,7 +70,7 @@ const Header = () => {
                     <NavLink className="flex items-center">
                     {user?.uid ?
                         <>
-                            <Link to={'/dashboard'}><button className="btn btn-xs lg:btn bg-green-500 shadow-xl mx-0.5 lg:mx-5 hidden lg:block">DashBoard</button></Link>
+                            <Link to={'/dashboard/myorders'}><button className="btn btn-xs lg:btn bg-green-500 shadow-xl mx-0.5 lg:mx-5 hidden lg:block">DashBoard</button></Link>
                             <button onClick={handleLogOut} className="btn btn-xs lg:btn bg-green-500 shadow-xl hidden lg:block">Log Out</button>
                         </>
                         : <Link to='/login'><button className="btn bg-green-500 shadow-xl">Log In</button></Link>

@@ -16,23 +16,13 @@ const Register = () => {
 
     const from = location.state?.from?.pathname|| "/";
 
-    const handleGoogleSignIn = (data) =>{
+    const handleGoogleSignIn = () =>{
         providerLogin(googleProvider)
-        .then(result=>{
-            const user = result.user;
-            navigate(from, {replace: true});
-            console.log(user);
+        .then((data)=>{
+            navigate(from, {replace: true})
             setError("");
-            swal({
-                title: "Successfully Registered",
-                button: "OK",
-                icon: "success"
-              });
-              const googleProfile ={ email: data.email, displayName: data.displayName, photoURL: data.photoURL};
-              updateUserProfile(googleProfile)
-              .then(()=>{
-                  saveUser(data.email, data.password, data.photoURL, data.name, data.role)
-              })
+            const user ={ email: data.user.email, displayName: data.user.displayName, photoURL: data.user.photoURL, role: "buyer"};
+              socialLogin(user)
         })
         .catch((error) => {
             swal({
@@ -44,10 +34,30 @@ const Register = () => {
         });
     }
 
+    const socialLogin = (user) =>{
+        fetch('http://localhost:5000/users', {
+            method: "POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            navigate(from, {replace: true})
+            swal({
+                title: "Successfully Registered",
+                button: "OK",
+                icon: "success"
+              });
+            console.log(data);
+        })
+    }
+
     const handleSignIn = (data) => {
         setError('');
 
-        createUser(data.email, data.password, data.photoURL, data.name, data.role)
+        createUser(data.email, data.password, data.photoURL, data.displayName, data.role)
         .then( result => {
             const user = result.user;
             console.log(user);
@@ -56,10 +66,10 @@ const Register = () => {
                 button: "OK",
                 icon: "success"
               });
-            const profile ={ displayName: data.name, photoURL: data.photoURL};
+            const profile ={ displayName: data.displayName, photoURL: data.photoURL};
             updateUserProfile(profile)
             .then(()=>{
-                saveUser(data.email, data.password, data.photoURL, data.name, data.role)
+                saveUser(data.email, data.password, data.photoURL, data.displayName, data.role)
             })
             .catch( e => console.error(e));
         })
@@ -73,8 +83,8 @@ const Register = () => {
         })
     }
 
-    const saveUser = (email, password, photoURL, name, role) =>{
-        const userData = {email, password, photoURL, name, role};
+    const saveUser = (email, password, photoURL, displayName, role) =>{
+        const userData = {email, password, photoURL, displayName, role};
         fetch('http://localhost:5000/users', {
             method: "POST",
             headers:{
@@ -120,7 +130,7 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">User Name</span>
                         </label>
-                        <input name="name" {...register("name", { required: "Name is Required" })} type="text" placeholder="user name" className="input input-bordered text-black" />
+                        <input name="displayName" {...register("displayName", { required: "Name is Required" })} type="text" placeholder="user name" className="input input-bordered text-black" />
                         {errors.name && <p role="alert">{errors.name?.message}</p>}
                         </div>
 
@@ -128,7 +138,7 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">Photo URL</span>
                         </label>
-                        <input name="photoURL" type="text" placeholder="photo url" className="input input-bordered text-black" />
+                            <input {...register("photoURL", {required: "PhotoURL is Required"})} type="text" placeholder="Photo url" className="input input-bordered text-black" />
                         </div>
 
                         <div className="form-control">
