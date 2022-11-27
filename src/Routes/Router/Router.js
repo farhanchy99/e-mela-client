@@ -1,8 +1,8 @@
 import DashLayout from "../../Layout/DashLayout";
 import Main from "../../Layout/Main";
 import AddPro from "../../Pages/AddPro/AddPro";
+import AddProducts from "../../Pages/AddProducts/AddProducts";
 import Blogs from "../../Pages/Blogs/Blogs";
-import BookModal from "../../Pages/Categories/BookModal";
 import Categories from "../../Pages/Categories/Categories";
 import PerCat from "../../Pages/Categories/PerCat";
 import DashBoard from "../../Pages/DashBoard/DashBoard";
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
                 loader: () => fetch(`http://localhost:5000/categories`)
             },
             {
-                path: '/products/:id',
+                path: '/categories/:id',
                 element: <PrivateRoutes><PerCat></PerCat></PrivateRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addproducts',
-                element: <PrivateRoutes><AddPro></AddPro></PrivateRoutes>,
+                element: <PrivateRoutes><AddProducts></AddProducts></PrivateRoutes>,
             },
             {
                 path: '/myproducts',

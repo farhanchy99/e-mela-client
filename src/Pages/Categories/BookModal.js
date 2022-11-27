@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 
 const BookModal = ({modal}) => {
     const{user} = useContext(AuthContext)
-    const {title, img, price1} = modal
+    const {title, image, price1} = modal
 
     const handleBook = event =>{
         event.preventDefault();
@@ -19,7 +19,7 @@ const BookModal = ({modal}) => {
             productName: title,
             userName,
             location,
-            img: img,
+            img: image,
             price: price1,
             phone,
             email

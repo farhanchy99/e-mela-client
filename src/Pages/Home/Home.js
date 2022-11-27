@@ -19,7 +19,7 @@ const Home = () => {
             <div className='my-10 bg-green-500 p-5'>
                 <div className='w-11/12 m-auto text-white'>
                 <h1 className='text-xl text-center font-bold mt-10'>Get the guaranteed best price for your phone in 4 easy steps</h1>
-                <div className='grid grid-cols-4 gap-4 my-10'>
+                <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 my-10'>
                     <div className='flex items-center'>
                         <div>
                             <FontAwesomeIcon icon={faSearch} className="mr-5 text-4xl font-bold"></FontAwesomeIcon>

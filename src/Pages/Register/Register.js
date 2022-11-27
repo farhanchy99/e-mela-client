@@ -60,7 +60,7 @@ const Register = () => {
         <div>
             <div>
                 <div className="hero min-h-screen my-10">
-                <div className="hero-content flex-col lg:flex-row-reverse w-4/5 lg:w-1/2 backdrop-blur-sm bg-white/30 p-0 shadow-2xl rounded-lg">
+                <div className="hero-content flex-col lg:flex-row-reverse w-4/5 lg:w-1/2 backdrop-blur-sm bg-white/30 p-0 shadow-2xl rounded-lg py-10">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold text-green-500">Register now!</h1>
                         <p>Join With Us</p>
@@ -98,7 +98,7 @@ const Register = () => {
                             {errors.password && <p role="alert">{errors.password?.message}</p>}
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-info text-white">Register</button>
+                            <button className="btn bg-green-500 text-white">Register</button>
                         </div>
                         {error && <p className='text-red-600'>{error}</p>}
                         <p>Already have Account?<Link to={'/login'} className="text-lime-300"> Login</Link></p>

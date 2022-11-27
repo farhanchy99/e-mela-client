@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Footer = () => {
     return (
         <div>
-            <footer className="footer p-10 bg-slate-800 text-green-500 justify-items-center">
+            <footer className="footer p-10 bg-slate-800 text-green-500 justify-items-start lg:justify-items-center">
                 <div>
                     
                     <h1 className="text-2xl font-bold text-white">E-Mela</h1>
