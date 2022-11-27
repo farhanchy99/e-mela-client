@@ -1,23 +1,56 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Register = () => {
     const { register, formState: {errors}, handleSubmit } = useForm();
     const [error, setError] = useState('')
-    const {createUser, updateUserProfile} = useContext(AuthContext)
+    const [role, setRole] = useState();
+    const {createUser, updateUserProfile, providerLogin} = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname|| "/";
+
+    const handleGoogleSignIn = (data) =>{
+        providerLogin(googleProvider)
+        .then(result=>{
+            const user = result.user;
+            navigate(from, {replace: true});
+            console.log(user);
+            setError("");
+            swal({
+                title: "Successfully Registered",
+                button: "OK",
+                icon: "success"
+              });
+              const googleProfile ={ email: data.email, displayName: data.displayName, photoURL: data.photoURL};
+              updateUserProfile(googleProfile)
+              .then(()=>{
+                  saveUser(data.email, data.password, data.photoURL, data.name, data.role)
+              })
+        })
+        .catch((error) => {
+            swal({
+                title: "Unsuccessfully Log In",
+                button: "OK",
+                icon: "error"
+              });
+            setError(error);
+        });
+    }
 
     const handleSignIn = (data) => {
         setError('');
 
-        createUser(data.email, data.password, data.photoURL, data.name)
+        createUser(data.email, data.password, data.photoURL, data.name, data.role)
         .then( result => {
             const user = result.user;
             console.log(user);
-            setError('');
             swal({
                 title: "Successfully Registered",
                 button: "OK",
@@ -26,7 +59,7 @@ const Register = () => {
             const profile ={ displayName: data.name, photoURL: data.photoURL};
             updateUserProfile(profile)
             .then(()=>{
-                saveUser(data.email, data.password, data.photoURL, data.name)
+                saveUser(data.email, data.password, data.photoURL, data.name, data.role)
             })
             .catch( e => console.error(e));
         })
@@ -40,8 +73,8 @@ const Register = () => {
         })
     }
 
-    const saveUser = (email, password, photoURL, name) =>{
-        const userData = {email, password, photoURL, name};
+    const saveUser = (email, password, photoURL, name, role) =>{
+        const userData = {email, password, photoURL, name, role};
         fetch('http://localhost:5000/users', {
             method: "POST",
             headers:{
@@ -63,10 +96,26 @@ const Register = () => {
                 <div className="hero-content flex-col lg:flex-row-reverse w-4/5 lg:w-1/2 backdrop-blur-sm bg-white/30 p-0 shadow-2xl rounded-lg py-10">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold text-green-500">Register now!</h1>
-                        <p>Join With Us</p>
+                        <p className="text-lg font-bold mt-5">JOIN WITH US</p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm">
                     <form onSubmit={handleSubmit(handleSignIn)} className="card-body">
+                        <h1 className="text-xl font-bold text-green-500">Join As:</h1>
+                        <div className='w-1/2 flex mr-4'>
+                            <div className="form-control">
+                            <label className="label cursor-pointer">
+                                <span className="label-text">Buyer</span> 
+                                <input type="radio" name="role" className="radio checked:bg-green-500" {...register("role", {required: true})} value="Buyer" onChange={e=> setRole(e.target.value)}/>
+                            </label>
+                            </div>
+                            <div className="form-control">
+                            <label className="label cursor-pointer">
+                                <span className="label-text">Seller</span> 
+                                <input type="radio" name="role" className="radio checked:bg-green-500" {...register("role", {required: true})} value="Seller" onChange={e=> setRole(e.target.value)}/>
+                            </label>
+                            </div>  
+                        </div>
+
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">User Name</span>
@@ -97,11 +146,15 @@ const Register = () => {
                             <input type="password" {...register("password", {required: "Password is Required"})} placeholder="password" className="input input-bordered" />
                             {errors.password && <p role="alert">{errors.password?.message}</p>}
                         </div>
+
                         <div className="form-control mt-6">
                             <button className="btn bg-green-500 text-white">Register</button>
                         </div>
                         {error && <p className='text-red-600'>{error}</p>}
                         <p>Already have Account?<Link to={'/login'} className="text-lime-300"> Login</Link></p>
+                        
+                        <div className='divider'>OR</div>
+                        <button onClick={handleGoogleSignIn} className='btn bg-green-500'>Continue with Google</button>  
                     </form>
                     </div>
                 </div>
