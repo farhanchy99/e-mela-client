@@ -15,7 +15,7 @@ const PerCat = () => {
     const{name} = useLoaderData();
 
     useEffect( () =>{
-        fetch(`http://localhost:5000/products/?brand=${name}`)
+        fetch(`https://resale-web-server-rho.vercel.app/products/?brand=${name}`)
         .then(res =>res.json())
         .then(data => setProductList(data))
     }, [name]);
@@ -28,7 +28,7 @@ const PerCat = () => {
           dangerMode: true,
         }).then((willAd) => {
           if (willAd) {
-            fetch(`http://localhost:5000/product/report/${id}`, {
+            fetch(`https://resale-web-server-rho.vercel.app/product/report/${id}`, {
               method: "PATCH",
               headers: {'content-type':'application/json'},
             })
