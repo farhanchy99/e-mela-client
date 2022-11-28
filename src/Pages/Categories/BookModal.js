@@ -27,7 +27,7 @@ const BookModal = ({modal}) => {
             email
         }
 
-        fetch('http://localhost:5000/myorders', {
+        fetch('https://resale-web-server-rho.vercel.app/myorders', {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
