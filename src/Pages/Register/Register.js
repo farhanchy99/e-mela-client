@@ -12,6 +12,7 @@ const Register = () => {
     const [role, setRole] = useState();
     const {createUser, updateUserProfile, providerLogin} = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+    const gitHubProvider = new GithubAuthProvider()
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -33,6 +34,22 @@ const Register = () => {
               });
             setError(error);
         });
+    }
+
+    const handleGitHubSignIn = () =>{
+        providerLogin(gitHubProvider)
+        .then(result=>{
+            const user = result.user;
+            swal({
+                title: "Successfully Login",
+                button: "OK",
+                icon: "success"
+              });
+            setError("");
+            navigate(from, {replace: true});
+            console.log(user);
+        })
+        .catch(error => console.error(error))
     }
 
     const socialLogin = (user) =>{
@@ -165,7 +182,8 @@ const Register = () => {
                         <p>Already have Account?<Link to={'/login'} className="text-lime-300"> Login</Link></p>
                         
                         <div className='divider'>OR</div>
-                        <button onClick={handleGoogleSignIn} className='btn bg-green-500'>Continue with Google</button>  
+                        <button onClick={handleGoogleSignIn} className='btn bg-green-500'>Continue with Google</button> 
+                        <button onClick={handleGitHubSignIn} className='btn bg-green-500'>Continue with GitHub</button>   
                     </form>
                     </div>
                 </div>
