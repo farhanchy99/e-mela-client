@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { ImageViewer } from "react-image-viewer-dv";
 import BookModal from './BookModal';
@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert';
 import useTitle from '../../hooks/useTitle';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const PerCat = () => {
     const [productList, setProductList] = useState([]);
+    const {user} = useContext(AuthContext)
     const [modal, setModal] = useState(null)
     const{name} = useLoaderData();
 
