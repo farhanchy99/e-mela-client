@@ -72,7 +72,7 @@ const AddProducts = () => {
                         button: "OK",
                         icon: "success"
                     });
-                    navigate('/myproducts')
+                    navigate('/dashboard/myproducts')
                 })
             }
         })

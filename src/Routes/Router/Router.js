@@ -17,6 +17,7 @@ import DashLayout from "../../Layout/DashLayout/DashLayout";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import SellerRoutes from "../SellerRoutes/SellerRoutes";
 import MyPro from "../../Pages/DashBoard/MyPro/MyPro";
+import BuyerRoutes from "../BuyerRoutes/BuyerRoutes";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -86,7 +87,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myorders',
-                element: <MyOrders></MyOrders>
+                element: <BuyerRoutes><MyOrders></MyOrders></BuyerRoutes>
             },
             {
                 path: '/dashboard/myproducts',

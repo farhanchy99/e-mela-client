@@ -42,7 +42,7 @@ const MyOrders = () => {
                     icon: "success"
                   });
                   const RemainingOrder = myOrd.filter(
-                    (review) => review._id !== id
+                    (order) => order._id !== id
                   );
                   setMyOrd(RemainingOrder);
                 }
@@ -56,7 +56,7 @@ const MyOrders = () => {
         });
       };
 
-
+    if(myOrd.length !== 0){
     return (
         <div className='w-11/12 m-auto'>
             <h1 className='text-3xl text-green-500 font-bold my-10'>My Orders</h1>
@@ -105,6 +105,15 @@ const MyOrders = () => {
             </div>
         </div>
     );
+    }
+    else{
+      return (
+        <div className='w-11/12 lg:max-w-screen-xl mx-auto mt-10 mb-10'>
+              <p className='text-xl text-black font-bold mt-10'>MY PRODUCTS</p>
+              <h1 className='text-3xl text-zinc-400 font-bold mb-10'>No Orders Are HERE!</h1>
+          </div>
+      )
+  }
 };
 
 export default MyOrders;

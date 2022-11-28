@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
+import useBuyer from '../../hooks/useBuyer';
 import useSeller from '../../hooks/useSeller';
 import Header from '../../Shared/Header/Header';
 import '../DashLayout/DashLayout.css'
@@ -10,6 +11,7 @@ const DashLayout = () => {
     const {user} = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email)
     const [isSeller] = useSeller(user?.email)
+    const [isBuyer] = useBuyer(user?.email)
 
     return (
         <div>
@@ -30,15 +32,18 @@ const DashLayout = () => {
                     </>
                     }
 
-                
-                <li><NavLink to={'/dashboard/myorders'} className="mt-5">My Orders</NavLink></li>
+                    {isBuyer && 
+                    <>
+                    <li><NavLink to={'/dashboard/myorders'} className="mt-5">My Orders</NavLink></li>
+                    </>
+                    }
 
-                {isSeller && 
-                <>
-                <li><NavLink to={'/dashboard/myproducts'} className="mt-5">My Products</NavLink></li>
-                <li><NavLink to={'/dashboard/addproducts'} className="mt-5">Add Products</NavLink></li>
-                </>
-                }
+                    {isSeller && 
+                    <>
+                    <li><NavLink to={'/dashboard/myproducts'} className="mt-5">My Products</NavLink></li>
+                    <li><NavLink to={'/dashboard/addproducts'} className="mt-5">Add Products</NavLink></li>
+                    </>
+                    }
                 </ul>
             
             </div>

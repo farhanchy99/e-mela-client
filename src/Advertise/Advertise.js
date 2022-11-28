@@ -16,7 +16,7 @@ const Advertise = () => {
     if(isLoading){
         return <Loading></Loading>
     }
-    if(myAds.length !== null){
+    if(myAds.length !== 0){
     return (
         <div>
         <p className='text-xl text-black font-bold mt-10'>ADVERTISEMENTS</p>
@@ -46,8 +46,6 @@ const Advertise = () => {
                             modal={modal}
                         ></BookModal>
                         }
-                        {/* Put this part before </body> tag */}
-                        
                      </div>
                  </div>
             </div>
