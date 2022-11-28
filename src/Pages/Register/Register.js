@@ -53,7 +53,7 @@ const Register = () => {
     }
 
     const socialLogin = (user) =>{
-        fetch('http://localhost:5000/users', {
+        fetch('https://resale-web-server-rho.vercel.app/users', {
             method: "POST",
             headers:{
                 'content-type': 'application/json'
@@ -103,7 +103,7 @@ const Register = () => {
 
     const saveUser = (email, password, photoURL, displayName, role) =>{
         const userData = {email, password, photoURL, displayName, role};
-        fetch('http://localhost:5000/users', {
+        fetch('https://resale-web-server-rho.vercel.app/users', {
             method: "POST",
             headers:{
                 'content-type': 'application/json'

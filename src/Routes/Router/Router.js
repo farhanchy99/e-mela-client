@@ -37,12 +37,12 @@ const router = createBrowserRouter([
             {
                 path: '/categories',
                 element: <BuyerRoutes><Categories></Categories></BuyerRoutes>,
-                loader: () => fetch(`http://localhost:5000/categories`)
+                loader: () => fetch(`https://resale-web-server-rho.vercel.app/categories`)
             },
             {
                 path: '/categories/:id',
                 element: <BuyerRoutes><PerCat></PerCat></BuyerRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: ({params}) => fetch(`https://resale-web-server-rho.vercel.app/categories/${params.id}`)
             },
             {
                 path: '/blogs',
@@ -96,7 +96,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoutes><Payment></Payment></BuyerRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/myorders/${params.id}`)
+                loader: ({params}) => fetch(`https://resale-web-server-rho.vercel.app/myorders/${params.id}`)
             },
             {
                 path: '/dashboard/myproducts',

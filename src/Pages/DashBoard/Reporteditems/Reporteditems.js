@@ -9,7 +9,7 @@ import useTitle from '../../../hooks/useTitle';
 const Reporteditems = () => {
     const {data: reports, isLoading =[]} = useQuery({
         queryKey: ['reports'],
-        queryFn: () => fetch('http://localhost:5000/reportitems')
+        queryFn: () => fetch('https://resale-web-server-rho.vercel.app/reportitems')
         .then(res => res.json())
     })
     const HandleDelete = (id) => {
@@ -28,7 +28,7 @@ const Reporteditems = () => {
           dangerMode: true,
         }).then((willDelete) => {
           if (willDelete) {
-            fetch(`http://localhost:5000/reportitem/${id}`, {
+            fetch(`https://resale-web-server-rho.vercel.app/reportitem/${id}`, {
               method: "DELETE",
             })
               .then((res) => res.json())
