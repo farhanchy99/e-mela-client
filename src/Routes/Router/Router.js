@@ -36,12 +36,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/categories',
-                element: <BuyerRoutes><Categories></Categories></BuyerRoutes>,
+                element: <PrivateRoutes><BuyerRoutes><Categories></Categories></BuyerRoutes></PrivateRoutes>,
                 loader: () => fetch(`https://resale-web-server-rho.vercel.app/categories`)
             },
             {
                 path: '/categories/:id',
-                element: <BuyerRoutes><PerCat></PerCat></BuyerRoutes>,
+                element: <PrivateRoutes><BuyerRoutes><PerCat></PerCat></BuyerRoutes></PrivateRoutes>,
                 loader: ({params}) => fetch(`https://resale-web-server-rho.vercel.app/categories/${params.id}`)
             },
             {

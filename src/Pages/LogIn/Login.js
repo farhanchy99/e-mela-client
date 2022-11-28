@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import swal from "sweetalert";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import useTitle from '../../hooks/useTitle';
  
 
@@ -13,6 +13,7 @@ const Login = () => {
     const [loginError, setLoginError] = useState('');
     const {logIn, providerLogin} = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+    const gitHubProvider = new GithubAuthProvider();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -34,6 +35,22 @@ const Login = () => {
               });
               setLoginError(error);
         });
+    }
+
+    const handleGitHubSignIn = () =>{
+        providerLogin(gitHubProvider)
+        .then(result=>{
+            const user = result.user;
+            swal({
+                title: "Successfully Login",
+                button: "OK",
+                icon: "success"
+              });
+            setLoginError("");
+            navigate(from, {replace: true});
+            console.log(user);
+        })
+        .catch(error => console.error(error))
     }
 
     const handleLogin = data => {
@@ -93,7 +110,8 @@ const Login = () => {
                     </label>
                 </form>
                 <div className='divider'>OR</div>
-                <button onClick={handleGoogleSignIn} className='btn bg-green-500'>Continue with Google</button>
+                <button onClick={handleGoogleSignIn} className='btn bg-green-500 mb-5'>Continue with Google</button>
+                <button onClick={handleGitHubSignIn} className='btn bg-green-500'>Continue with GitHub</button>  
                 </div>
             </div>
             </div>

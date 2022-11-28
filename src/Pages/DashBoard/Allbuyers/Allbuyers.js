@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import swal from 'sweetalert';
-import { faCircleCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
+import {  faTrash } from '@fortawesome/free-solid-svg-icons'
 import useTitle from '../../../hooks/useTitle';
 
 const Allbuyers = () => {

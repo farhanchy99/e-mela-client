@@ -12,7 +12,7 @@ const Register = () => {
     const [role, setRole] = useState();
     const {createUser, updateUserProfile, providerLogin} = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
-    const gitHubProvider = new GithubAuthProvider()
+    const gitHubProvider = new GithubAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
 
