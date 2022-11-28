@@ -18,6 +18,8 @@ import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import SellerRoutes from "../SellerRoutes/SellerRoutes";
 import MyPro from "../../Pages/DashBoard/MyPro/MyPro";
 import BuyerRoutes from "../BuyerRoutes/BuyerRoutes";
+import Payment from "../../Pages/DashBoard/Payment/Payment";
+import DisplayError from "../../Shared/DisplayError/DisplayError";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -26,6 +28,7 @@ const router = createBrowserRouter([
     {
         path:'/',
         element: <Main></Main>,
+        errorElement:<DisplayError></DisplayError>,
         children:[
             {
                 path: '/',
@@ -33,7 +36,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/categories',
-                element: <BuyerRoutes><MyOrders></MyOrders></BuyerRoutes>,
+                element: <BuyerRoutes><Categories></Categories></BuyerRoutes>,
                 loader: () => fetch(`http://localhost:5000/categories`)
             },
             {
@@ -68,6 +71,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoutes><DashLayout></DashLayout></PrivateRoutes>,
+        errorElement:<DisplayError></DisplayError>,
         children:[
             {
                 path:'/dashboard',
@@ -90,13 +94,18 @@ const router = createBrowserRouter([
                 element: <BuyerRoutes><MyOrders></MyOrders></BuyerRoutes>
             },
             {
+                path: '/dashboard/payment/:id',
+                element: <BuyerRoutes><Payment></Payment></BuyerRoutes>,
+                loader: ({params}) => fetch(`http://localhost:5000/myorders/${params.id}`)
+            },
+            {
                 path: '/dashboard/myproducts',
                 element: <SellerRoutes><MyPro></MyPro></SellerRoutes>
             },
             {
                 path: '/dashboard/addproducts',
                 element: <SellerRoutes><AddProducts></AddProducts></SellerRoutes>
-            },
+            }
         ]
     }
 ])

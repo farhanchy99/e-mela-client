@@ -4,6 +4,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
+import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
@@ -90,9 +91,12 @@ const MyOrders = () => {
                             <td>{row?.price}</td>
                             
                             <th>
-                                <div>
-                                    <button className='btn bg-green-500'>Pay Now</button>
-                                </div>
+                              {
+                                row.price && !row.paid && <Link to={`/dashboard/payment/${row._id}`}><button className='btn bg-green-500'>Pay Now</button></Link>
+                              }
+                              {
+                                row.price && row.paid && <span>Paid Successfully</span>
+                              }
                             </th>
                             <th>
                                 <div>
