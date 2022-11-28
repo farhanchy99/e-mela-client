@@ -6,7 +6,7 @@ import useTitle from '../hooks/useTitle';
 const CategoryList = () => {
     const {data: catlists =[]} = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('http://localhost:5000/categories')
+        queryFn: () => fetch('https://resale-web-server-rho.vercel.app/categories')
         .then(res => res.json())
     })
 
