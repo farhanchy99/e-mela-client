@@ -53,7 +53,7 @@ const MyPro = () => {
                 {user?.email ?
                     <>
                     {myProducts.map(pro=>
-                    <div className="card card-compact bg-green-500 shadow-xl text-slate-800 p-2.5">
+                    <div className="card card-compact bg-green-500 shadow-xl text-slate-800 p-2.5" key={pro._id}>
                     <figure className='w-full h-48 m-auto'><img className="rounded-lg shadow-xl" src={pro.image} alt="Movie"/></figure>
                     <div className="card-body">
                     <h2 className="card-title text-white">{pro.title}</h2>
