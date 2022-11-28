@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
     const { register, formState: {errors}, handleSubmit } = useForm();
@@ -98,7 +99,7 @@ const Register = () => {
             navigate("/");
         })
     }
-
+    useTitle('Register');
     return (
         <div>
             <div>

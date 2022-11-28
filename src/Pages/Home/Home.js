@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { faSearch, faCircleCheck, faBoxOpen, faCircleDollarToSlot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Banner from '../../Shared/Banner/Banner';
 import CategoryList from '../../CategoryList/CategoryList';
 import Advertise from '../../Advertise/Advertise';
+import useTitle from '../../hooks/useTitle';
 
 const Home = () => {
+    useTitle('Home');
     return (
         <div>
             <Banner></Banner>

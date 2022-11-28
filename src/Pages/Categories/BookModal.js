@@ -1,10 +1,12 @@
 import React, { useContext} from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 const BookModal = ({modal}) => {
     const{user} = useContext(AuthContext)
     const {title, image, price1} = modal
+    const navigate = useNavigate();
 
     const handleBook = event =>{
         event.preventDefault();
@@ -42,6 +44,7 @@ const BookModal = ({modal}) => {
                     icon: "success"
                   });
                 form.reset();
+                navigate('/categories')
             }
         })
         .catch(err => console.error(err));

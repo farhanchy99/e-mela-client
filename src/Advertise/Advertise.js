@@ -32,10 +32,10 @@ const Advertise = () => {
                 </figure>
                  <div className="card-body">
                     <h2 className="card-title text-white">{mtAd.title}</h2>
-                     <p>Seller's Name: {mtAd.userName}</p>
+                    <h3 className='text-lg text-white'>Seller's Name: {mtAd.userName}</h3>
                      <p>Location: {mtAd.location}</p>
                      <p>Resale Price: $ {mtAd.price1}</p>
-                     <p>Original Price: $ {mtAd.price2}</p>
+                     <p>Original Price: $ {mtAd.price}</p>
                      <p>Years of use: {mtAd.year}</p>
                      <div className="card-actions justify-end items-center flex md:block lg:flex">
                          <p className='text-xs text-base-100 font-bold mb-0 md:mb-5 lg:mb-0'>{mtAd.time}</p>

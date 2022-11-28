@@ -1,7 +1,9 @@
 import React from 'react';
 import CategoryList from '../../CategoryList/CategoryList';
+import useTitle from '../../hooks/useTitle';
 
 const Categories = () => {
+    useTitle('Categories');
     return (
         <div className='w-11/12 m-auto my-10'>
         <p className='text-xl text-black font-bold mt-10'>CATEGORIES</p>

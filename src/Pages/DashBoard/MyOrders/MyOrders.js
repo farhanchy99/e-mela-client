@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
@@ -55,7 +56,7 @@ const MyOrders = () => {
           }
         });
       };
-
+      useTitle('My Orders');
     if(myOrd.length !== 0){
     return (
         <div className='w-11/12 m-auto'>

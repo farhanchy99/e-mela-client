@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import img1 from '../../assets/banner.jpg'
 import './Banner.css'
 
 const Slider = () => {
@@ -12,7 +11,7 @@ const Slider = () => {
                 <div className="w-full md:w-4/5 lg:w-3/4">
                 <h1 className="mb-5 text-xl md:text-6xl lg:text-6xl font-bold text-white">Welcome To E-Mela!</h1>
                 <p className="mb-5 text-xl md:text-lg lg:text-2xl text-white w-full lg:w-1/2">Sell your mobile phone for cash! Get the most cash for your phone or tablet</p>
-                <button className="btn bg-green-500">Get Started</button>
+                <Link to={'/categories'}><button className="btn bg-green-500">Get Started</button></Link>
                 </div>
             </div>
             </div>

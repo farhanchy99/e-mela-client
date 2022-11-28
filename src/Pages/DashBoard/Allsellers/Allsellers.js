@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { faCircleCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
 import React, { useState } from 'react';
 import swal from 'sweetalert';
+import useTitle from '../../../hooks/useTitle';
 
 const Allsellers = () => {
     const [dltSeller, setdltSeller] = useState([]);
@@ -71,9 +72,10 @@ const Allsellers = () => {
                     icon: "success"
                   });
                   const RemainingOrder = dltSeller.filter(
-                    (review) => review._id !== id
+                    (sell) => sell._id !== id
                   );
                   setdltSeller(RemainingOrder);
+                  refetch()
                 }
               });
           } else {
@@ -84,6 +86,7 @@ const Allsellers = () => {
           }
         });
       };
+      useTitle('All Sellers');
         return (
             <div className='w-11/12 m-auto'>
                 <h1 className='text-3xl text-green-500 font-bold my-10'>All Sellers</h1>

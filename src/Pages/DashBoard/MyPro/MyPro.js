@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 const MyPro = () => {
     const { user } = useContext(AuthContext);
@@ -42,7 +43,7 @@ const MyPro = () => {
             }
           });
     }
-
+    useTitle('My Products');
     if(myProducts.length !== 0){
     return (
         <div className='w-11/12 lg:max-w-screen-xl mx-auto mt-10 mb-10'>

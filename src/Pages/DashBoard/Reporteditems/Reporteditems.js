@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import swal from 'sweetalert';
 import React from 'react';
 import Loading from '../../../Shared/Loading/Loading';
+import useTitle from '../../../hooks/useTitle';
 
 const Reporteditems = () => {
     const {data: reports, isLoading =[]} = useQuery({
@@ -52,7 +53,7 @@ const Reporteditems = () => {
         });
       };
 
-
+      useTitle('Reported Items');
     if(isLoading){
         return <Loading></Loading>
     }
@@ -60,7 +61,7 @@ const Reporteditems = () => {
     if(reports.length !== 0){
         return (
             <div className='w-11/12 m-auto'>
-                <h1 className='text-3xl text-green-500 font-bold my-10'>My Orders</h1>
+                <h1 className='text-3xl text-green-500 font-bold my-10'>Reported Items</h1>
                 <div className="overflow-x-auto w-11/12 m-auto text-black">
                 <table className="table w-full">
                     <thead>
@@ -89,7 +90,7 @@ const Reporteditems = () => {
                                 <td>{row?.price}</td>
                                 <th>
                                     <div>
-                                        <button onClick={() =>HandleDelete(row._id)}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></button>
+                                        <button onClick={() =>HandleDelete(row._id)} className='btn btn-sm bg-red-500'><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></button>
                                     </div>
                                 </th>
                             </tr>)
@@ -103,8 +104,8 @@ const Reporteditems = () => {
         else{
           return (
             <div className='w-11/12 lg:max-w-screen-xl mx-auto mt-10 mb-10'>
-                  <p className='text-xl text-black font-bold mt-10'>MY PRODUCTS</p>
-                  <h1 className='text-3xl text-zinc-400 font-bold mb-10'>No Orders Are HERE!</h1>
+                  <p className='text-xl text-black font-bold mt-10'>REPORTED ITEMS</p>
+                  <h1 className='text-3xl text-zinc-400 font-bold mb-10'>No Reported Items Are HERE!</h1>
               </div>
           )
       }

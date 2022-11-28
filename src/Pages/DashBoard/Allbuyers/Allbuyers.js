@@ -1,11 +1,14 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import swal from 'sweetalert';
+import { faCircleCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
+import useTitle from '../../../hooks/useTitle';
 
 const Allbuyers = () => {
     const [dltBuyer, setdltBuyer] = useState([]);
 
-    const {data: buyerList =[]} = useQuery({
+    const {data: buyerList =[], refetch} = useQuery({
     queryKey: ['buyerList'],
     queryFn: () => fetch('http://localhost:5000/users/allbuyers')
     .then(res => res.json())
@@ -39,9 +42,10 @@ const Allbuyers = () => {
                     icon: "success"
                   });
                   const RemainingOrder = dltBuyer.filter(
-                    (review) => review._id !== id
+                    (buy) => buy._id !== id
                   );
                   setdltBuyer(RemainingOrder);
+                  refetch()
                 }
               });
           } else {
@@ -52,7 +56,7 @@ const Allbuyers = () => {
           }
         });
       };
-
+      useTitle('All Buyers');
     return (
         <div className='w-11/12 m-auto'>
             <h1 className='text-3xl text-green-500 font-bold my-10'>All Buyers</h1>
@@ -85,7 +89,7 @@ const Allbuyers = () => {
                             
                             <th>
                                 <div>
-                                    <button onClick={() =>HandleDelete(row._id)} className='btn bg-red-500'>Delete User</button>
+                                    <button onClick={() =>HandleDelete(row._id)} className='btn btn-sm bg-red-500'><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></button>
                                 </div>
                             </th>
                         </tr>)

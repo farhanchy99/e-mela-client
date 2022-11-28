@@ -6,6 +6,7 @@ import Loading from '../../Shared/Loading/Loading';
 import moment from 'moment';
 import swal from 'sweetalert';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const AddProducts = () => {
     const {user} = useContext(AuthContext)
@@ -77,7 +78,7 @@ const AddProducts = () => {
             }
         })
     }
-
+    useTitle('Add Products');
     if(isLoading){
         return <Loading></Loading>
     }

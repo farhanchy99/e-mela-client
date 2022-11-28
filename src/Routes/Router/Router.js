@@ -33,12 +33,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/categories',
-                element: <PrivateRoutes><Categories></Categories></PrivateRoutes>,
+                element: <BuyerRoutes><MyOrders></MyOrders></BuyerRoutes>,
                 loader: () => fetch(`http://localhost:5000/categories`)
             },
             {
                 path: '/categories/:id',
-                element: <PrivateRoutes><PerCat></PerCat></PrivateRoutes>,
+                element: <BuyerRoutes><PerCat></PerCat></BuyerRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
             {
