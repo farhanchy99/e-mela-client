@@ -10,7 +10,7 @@ const Allsellers = () => {
 
     const {data: sellerList =[], refetch} = useQuery({
         queryKey: ['sellerList'],
-        queryFn: () => fetch('http://localhost:5000/users/allsellers')
+        queryFn: () => fetch('https://resale-web-server-rho.vercel.app/users/allsellers')
         .then(res => res.json())
     })
 
@@ -22,7 +22,7 @@ const Allsellers = () => {
         dangerMode: true,
       }).then((willVerify) => {
         if (willVerify) {
-          fetch(`http://localhost:5000/seller/verify/${id}`, {
+          fetch(`https://resale-web-server-rho.vercel.app/seller/verify/${id}`, {
             method: "PATCH",
             headers: {'content-type':'application/json'},
           })
@@ -60,7 +60,7 @@ const Allsellers = () => {
           dangerMode: true,
         }).then((willDelete) => {
           if (willDelete) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://resale-web-server-rho.vercel.app/users/${id}`, {
               method: "DELETE",
             })
               .then((res) => res.json())

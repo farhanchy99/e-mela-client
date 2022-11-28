@@ -10,7 +10,7 @@ const Payment = () => {
     const {productName, price} = orders;
     const navigation = useNavigation();
 
-    const stripePromise = loadStripe("pk_test_51M97edJXT4VNFurMohofxcjSsGdqmAexmPNF6bXqSxauhvhUVXSLetYjWJsqqk6ftO0vQPY0ApRGNl8RjlIIqzro000iXqhr1y");
+    const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
     if(navigation.state === "loading"){
         return <Loading></Loading>
     }

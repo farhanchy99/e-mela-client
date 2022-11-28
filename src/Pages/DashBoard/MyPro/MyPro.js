@@ -10,7 +10,7 @@ const MyPro = () => {
     const [myProducts, setMyProducts] = useState([]);
 
     useEffect( () =>{
-        fetch(`http://localhost:5000/myproducts?email=${user?.email}`)
+        fetch(`https://resale-web-server-rho.vercel.app/myproducts?email=${user?.email}`)
         .then(res =>res.json())
         .then(data => setMyProducts(data))
     }, [user]);
@@ -23,7 +23,7 @@ const MyPro = () => {
             dangerMode: true,
           }).then((willAd) => {
             if (willAd) {
-              fetch(`http://localhost:5000/product/ad/${id}`, {
+              fetch(`https://resale-web-server-rho.vercel.app/product/ad/${id}`, {
                 method: "PATCH",
                 headers: {'content-type':'application/json'},
               })

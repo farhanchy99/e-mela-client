@@ -11,7 +11,7 @@ const MyOrders = () => {
     const [myOrd, setMyOrd] = useState([]);
     
     useEffect( () =>{
-        fetch(`http://localhost:5000/myorders?email=${user?.email}`)
+        fetch(`https://resale-web-server-rho.vercel.app/myorders?email=${user?.email}`)
         .then(res =>res.json())
         .then(data => setMyOrd(data))
     }, [user]);
@@ -32,7 +32,7 @@ const MyOrders = () => {
           dangerMode: true,
         }).then((willDelete) => {
           if (willDelete) {
-            fetch(`http://localhost:5000/myorders/${id}`, {
+            fetch(`https://resale-web-server-rho.vercel.app/myorders/${id}`, {
               method: "DELETE",
             })
               .then((res) => res.json())
