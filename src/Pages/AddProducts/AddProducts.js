@@ -20,7 +20,7 @@ const AddProducts = () => {
     const { data: catlists, isLoading } = useQuery({
         queryKey: ['catlist'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories');
+            const res = await fetch('https://resale-web-server-rho.vercel.app/categories');
             const data = await res.json();
             return data;
         }
@@ -58,7 +58,7 @@ const AddProducts = () => {
                 }
 
                 // save doctor information to the database
-                fetch('http://localhost:5000/products', {
+                fetch('https://resale-web-server-rho.vercel.app/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 
